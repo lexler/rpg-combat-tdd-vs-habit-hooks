@@ -21,7 +21,7 @@ export class Character {
 
   heal(amount: number): void {
     if (!this.isAlive) return;
-    this.health += amount;
+    this.health = Math.min(this.health + amount, 1000);
   }
 
   private receiveDamage(amount: number): void {
