@@ -195,6 +195,18 @@ describe('Character', () => {
     expect(character.level).toBe(1);
   });
 
+  it('cannot go beyond level 10', () => {
+    const character = new Character({ level: 10 });
+    const attacker = new Character();
+
+    for (let round = 0; round < 50; round += 1) {
+      attacker.dealDamage(character, 500);
+      character.heal(character, 500);
+    }
+
+    expect(character.level).toBe(10);
+  });
+
   it('needs an additional 2000 survived damage to go from level 2 to level 3', () => {
     const character = new Character({ level: 2 });
     const attacker = new Character();
