@@ -9,11 +9,14 @@ export class Character {
 
   dealDamage(target: Character, amount: number): void {
     if (target === this) return;
+    target.receiveDamage(this.adjustDamageForLevel(target, amount));
+  }
+
+  private adjustDamageForLevel(target: Character, amount: number): number {
     const levelDiff = target.level - this.level;
-    let adjusted = amount;
-    if (levelDiff >= 5) adjusted = amount / 2;
-    else if (levelDiff <= -5) adjusted = amount * 1.5;
-    target.receiveDamage(adjusted);
+    if (levelDiff >= 5) return amount / 2;
+    if (levelDiff <= -5) return amount * 1.5;
+    return amount;
   }
 
   heal(amount: number): void {
