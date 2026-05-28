@@ -87,4 +87,12 @@ describe('Character', () => {
 
     expect(character.health).toBe(1000);
   });
+
+  it('raises the health cap to 1500 at level 6', () => {
+    const character = new Character({ level: 6 });
+
+    character.heal(600);
+
+    expect(character.health).toBe(1500);
+  });
 });
