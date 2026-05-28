@@ -1,4 +1,7 @@
-export class Character {
+import type { Damageable } from './damageable.js';
+import { HealingObject, MagicalWeapon } from './magical-object.js';
+
+export class Character implements Damageable {
   level: number;
   health: number;
   alive = true;
@@ -17,18 +20,47 @@ export class Character {
     this.factions.add(faction);
   }
 
-  attack(target: Character, amount: number): void {
-    if (target === this) return;
-    if (this.sharesFactionWith(target)) return;
-    const dealt = this.applyLevelModifier(target, amount);
-    target.health = Math.max(0, target.health - dealt);
-    if (target.health === 0) target.alive = false;
+  attack(target: Damageable, amount: number): void {
+    if (!this.canDamage(target)) return;
+    const dealt = target instanceof Character ? this.applyLevelModifier(target, amount) : amount;
+    this.applyDamage(target, dealt);
+  }
+
+  attackWith(target: Damageable, weapon: MagicalWeapon): void {
+    if (!weapon.alive) return;
+    if (!this.canDamage(target)) return;
+    this.applyDamage(target, weapon.damage);
+    this.consumeWeapon(weapon);
   }
 
   heal(target: Character, amount: number): void {
     if (!target.alive) return;
     if (target !== this && !this.sharesFactionWith(target)) return;
     target.health = Math.min(target.maxHealth, target.health + amount);
+  }
+
+  healWith(target: Character, object: HealingObject): void {
+    if (!target.alive || !object.alive) return;
+    const amount = Math.min(object.health, target.maxHealth - target.health);
+    target.health += amount;
+    object.health -= amount;
+    if (object.health === 0) object.alive = false;
+  }
+
+  private canDamage(target: Damageable): boolean {
+    if (target === this) return false;
+    if (target instanceof Character && this.sharesFactionWith(target)) return false;
+    return true;
+  }
+
+  private applyDamage(target: Damageable, amount: number): void {
+    target.health = Math.max(0, target.health - amount);
+    if (target.health === 0) target.alive = false;
+  }
+
+  private consumeWeapon(weapon: MagicalWeapon): void {
+    weapon.health -= 1;
+    if (weapon.health === 0) weapon.alive = false;
   }
 
   private sharesFactionWith(other: Character): boolean {
