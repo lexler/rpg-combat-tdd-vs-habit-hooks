@@ -69,4 +69,13 @@ describe('Character', () => {
 
     expect(target.health).toBe(950);
   });
+
+  it('deals 50% more damage when target is 5+ levels below attacker', () => {
+    const attacker = new Character({ level: 6 });
+    const target = new Character();
+
+    attacker.dealDamage(target, 100);
+
+    expect(target.health).toBe(850);
+  });
 });
