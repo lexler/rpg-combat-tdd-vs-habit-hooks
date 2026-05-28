@@ -75,8 +75,9 @@ export class Character {
 
   private progressLevelFromDamage(amount: number): void {
     this.damageSurvived += amount;
-    if (this.damageSurvived >= 1000) {
-      this.damageSurvived -= 1000;
+    const threshold = this.level * 1000;
+    if (this.damageSurvived >= threshold) {
+      this.damageSurvived -= threshold;
       this.level += 1;
     }
   }
