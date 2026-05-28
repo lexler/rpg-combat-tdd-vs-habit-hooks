@@ -1,7 +1,11 @@
 export class Character {
   health = 1000;
   isAlive = true;
-  level = 1;
+  level: number;
+
+  constructor(options: { level?: number } = {}) {
+    this.level = options.level ?? 1;
+  }
 
   dealDamage(target: Character, amount: number): void {
     if (target === this) return;
