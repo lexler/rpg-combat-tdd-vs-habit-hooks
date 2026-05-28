@@ -153,6 +153,16 @@ describe('Character', () => {
     expect(other.health).toBe(700);
   });
 
+  it('does not gain a level from the killing blow', () => {
+    const character = new Character();
+    new Character().dealDamage(character, 999);
+    character.heal(character, 999);
+    new Character().dealDamage(character, 1000);
+
+    expect(character.isAlive).toBe(false);
+    expect(character.level).toBe(1);
+  });
+
   it('gains a level after surviving 1000 cumulative damage', () => {
     const character = new Character();
     const attacker = new Character();
