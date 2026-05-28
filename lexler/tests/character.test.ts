@@ -40,7 +40,7 @@ describe('Character', () => {
     const character = new Character();
     new Character().dealDamage(character, 300);
 
-    character.heal(100);
+    character.heal(character, 100);
 
     expect(character.health).toBe(800);
   });
@@ -49,7 +49,7 @@ describe('Character', () => {
     const character = new Character();
     new Character().dealDamage(character, 1500);
 
-    character.heal(100);
+    character.heal(character, 100);
 
     expect(character.health).toBe(0);
     expect(character.isAlive).toBe(false);
@@ -83,7 +83,7 @@ describe('Character', () => {
     const character = new Character();
     new Character().dealDamage(character, 50);
 
-    character.heal(200);
+    character.heal(character, 200);
 
     expect(character.health).toBe(1000);
   });
@@ -91,7 +91,7 @@ describe('Character', () => {
   it('raises the health cap to 1500 at level 6', () => {
     const character = new Character({ level: 6 });
 
-    character.heal(600);
+    character.heal(character, 600);
 
     expect(character.health).toBe(1500);
   });
