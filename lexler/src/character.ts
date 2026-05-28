@@ -12,7 +12,9 @@ export class Character {
     this.level = options.level ?? 1;
   }
 
-  attackWith(_weapon: import('./magical-object.js').MagicalWeapon, _target: Character): void {}
+  attackWith(weapon: import('./magical-object.js').MagicalWeapon, target: Character): void {
+    this.dealDamage(target, weapon.damage);
+  }
 
   dealDamage(target: Character, amount: number): void {
     if (target === this) return;
