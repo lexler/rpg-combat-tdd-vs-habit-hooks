@@ -5,6 +5,7 @@ export class Character {
   alive = true;
 
   attack(target: Character, amount: number): void {
+    if (target === this) return;
     target.health = Math.max(0, target.health - amount);
     if (target.health === 0) target.alive = false;
   }
