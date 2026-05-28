@@ -207,6 +207,16 @@ describe('Character', () => {
     expect(character.level).toBe(10);
   });
 
+  it('does not double-count when joining a faction it already belongs to', () => {
+    const character = new Character();
+
+    character.join('Knights');
+    character.join('Knights');
+    character.join('Mages');
+
+    expect(character.level).toBe(1);
+  });
+
   it('cannot go beyond level 10 via faction progression', () => {
     const character = new Character({ level: 10 });
 
