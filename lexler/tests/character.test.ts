@@ -152,4 +152,14 @@ describe('Character', () => {
 
     expect(other.health).toBe(700);
   });
+
+  it('gains a level after surviving 1000 cumulative damage', () => {
+    const character = new Character();
+    const attacker = new Character();
+
+    attacker.dealDamage(character, 500);
+    attacker.dealDamage(character, 500);
+
+    expect(character.level).toBe(2);
+  });
 });
