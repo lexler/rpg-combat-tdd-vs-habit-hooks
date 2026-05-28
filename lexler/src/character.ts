@@ -12,6 +12,8 @@ export class Character {
     this.level = options.level ?? 1;
   }
 
+  attackWith(_weapon: import('./magical-object.js').MagicalWeapon, _target: Character): void {}
+
   dealDamage(target: Character, amount: number): void {
     if (target === this) return;
     if (this.isAllyOf(target)) return;

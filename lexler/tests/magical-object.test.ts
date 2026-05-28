@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { Character } from '../src/character.js';
-import { HealingObject, MagicalObject } from '../src/magical-object.js';
+import { HealingObject, MagicalObject, MagicalWeapon } from '../src/magical-object.js';
 
 describe('MagicalObject', () => {
   it('has health and a fixed max health set at creation', () => {
@@ -31,5 +31,17 @@ describe('HealingObject', () => {
 
     expect(character.health).toBe(650);
     expect(fountain.health).toBe(0);
+  });
+});
+
+describe('MagicalWeapon', () => {
+  it('deals its fixed damage to a target when wielded', () => {
+    const attacker = new Character();
+    const target = new Character();
+    const sword = new MagicalWeapon({ maxHealth: 10, damage: 200 });
+
+    attacker.attackWith(sword, target);
+
+    expect(target.health).toBe(800);
   });
 });
