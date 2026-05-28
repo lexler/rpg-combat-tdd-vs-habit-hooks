@@ -78,4 +78,13 @@ describe('Character', () => {
 
     expect(target.health).toBe(850);
   });
+
+  it('caps health at 1000 when healing below level 6', () => {
+    const character = new Character();
+    new Character().dealDamage(character, 50);
+
+    character.heal(200);
+
+    expect(character.health).toBe(1000);
+  });
 });
