@@ -12,7 +12,7 @@ export class Character {
     this.health += amount;
   }
 
-  receiveDamage(amount: number): void {
+  private receiveDamage(amount: number): void {
     this.health -= amount;
     if (this.health <= 0) {
       this.health = 0;
