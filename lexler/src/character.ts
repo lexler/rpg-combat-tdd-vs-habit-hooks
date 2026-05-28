@@ -7,6 +7,8 @@ export class Character {
     target.receiveDamage(amount);
   }
 
+  heal(_amount: number): void {}
+
   receiveDamage(amount: number): void {
     this.health -= amount;
     if (this.health <= 0) {

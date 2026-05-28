@@ -36,6 +36,14 @@ describe('Character', () => {
     expect(character.health).toBe(1000);
   });
 
-  // [TEST] A Character can heal themselves, increasing their own health
+  it('heals themselves, increasing their own health', () => {
+    const character = new Character();
+    new Character().dealDamage(character, 300);
+
+    character.heal(100);
+
+    expect(character.health).toBe(800);
+  });
+
   // [TEST] A dead Character cannot heal
 });
