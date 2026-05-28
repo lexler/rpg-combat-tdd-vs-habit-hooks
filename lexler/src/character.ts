@@ -29,6 +29,10 @@ export class Character {
     return this.level >= 6 ? 1500 : 1000;
   }
 
+  join(faction: string): void {
+    this.factions.push(faction);
+  }
+
   private receiveDamage(amount: number): void {
     this.health -= amount;
     if (this.health <= 0) {
