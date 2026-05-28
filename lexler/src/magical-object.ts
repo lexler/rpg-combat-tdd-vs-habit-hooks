@@ -1,3 +1,5 @@
+import type { Character } from './character.js';
+
 export class MagicalObject {
   health: number;
   readonly maxHealth: number;
@@ -6,4 +8,8 @@ export class MagicalObject {
     this.maxHealth = options.maxHealth;
     this.health = options.maxHealth;
   }
+}
+
+export class HealingObject extends MagicalObject {
+  heal(_target: Character, _amount: number): void {}
 }
