@@ -44,4 +44,14 @@ describe('MagicalWeapon', () => {
 
     expect(target.health).toBe(800);
   });
+
+  it('loses 1 health each time it is used', () => {
+    const attacker = new Character();
+    const target = new Character();
+    const sword = new MagicalWeapon({ maxHealth: 10, damage: 100 });
+
+    attacker.attackWith(sword, target);
+
+    expect(sword.health).toBe(9);
+  });
 });
