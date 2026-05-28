@@ -61,11 +61,19 @@ export class Character {
     this._factions.delete(faction);
   }
 
+  private damageSurvived = 0;
+
   private receiveDamage(amount: number): void {
     this.health -= amount;
     if (this.health <= 0) {
       this.health = 0;
       this.isAlive = false;
+      return;
+    }
+    this.damageSurvived += amount;
+    if (this.damageSurvived >= 1000) {
+      this.damageSurvived -= 1000;
+      this.level += 1;
     }
   }
 }

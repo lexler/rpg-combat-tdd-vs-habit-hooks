@@ -158,6 +158,7 @@ describe('Character', () => {
     const attacker = new Character();
 
     attacker.dealDamage(character, 500);
+    character.heal(character, 500);
     attacker.dealDamage(character, 500);
 
     expect(character.level).toBe(2);
