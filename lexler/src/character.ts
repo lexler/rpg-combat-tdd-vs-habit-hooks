@@ -1,4 +1,4 @@
 export class Character {
-  health = 0;
-  isAlive = false;
+  health = 1000;
+  isAlive = true;
 }
