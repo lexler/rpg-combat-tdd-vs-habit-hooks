@@ -1,6 +1,9 @@
 export class MagicalObject {
-  health = 0;
-  maxHealth = 0;
+  health: number;
+  readonly maxHealth: number;
 
-  constructor(_options: { maxHealth: number }) {}
+  constructor(options: { maxHealth: number }) {
+    this.maxHealth = options.maxHealth;
+    this.health = options.maxHealth;
+  }
 }
