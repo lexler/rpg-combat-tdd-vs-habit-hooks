@@ -55,4 +55,9 @@ describe('Character', () => {
     expect(character.isAlive).toBe(false);
   });
 
+  it('starts at level 1', () => {
+    const character = new Character();
+
+    expect(character.level).toBe(1);
+  });
 });
