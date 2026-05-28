@@ -28,7 +28,14 @@ describe('Character', () => {
     expect(target.isAlive).toBe(false);
   });
 
-  // [TEST] A Character cannot deal damage to itself
+  it('cannot deal damage to itself', () => {
+    const character = new Character();
+
+    character.dealDamage(character, 100);
+
+    expect(character.health).toBe(1000);
+  });
+
   // [TEST] A Character can heal themselves, increasing their own health
   // [TEST] A dead Character cannot heal
 });
