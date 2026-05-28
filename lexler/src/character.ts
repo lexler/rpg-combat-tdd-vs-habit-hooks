@@ -3,10 +3,14 @@ export class Character {
   isAlive = true;
 
   dealDamage(target: Character, amount: number): void {
-    target.health -= amount;
-    if (target.health <= 0) {
-      target.health = 0;
-      target.isAlive = false;
+    target.receiveDamage(amount);
+  }
+
+  receiveDamage(amount: number): void {
+    this.health -= amount;
+    if (this.health <= 0) {
+      this.health = 0;
+      this.isAlive = false;
     }
   }
 }
