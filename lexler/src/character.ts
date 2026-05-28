@@ -70,6 +70,10 @@ export class Character {
       this.isAlive = false;
       return;
     }
+    this.progressLevelFromDamage(amount);
+  }
+
+  private progressLevelFromDamage(amount: number): void {
     this.damageSurvived += amount;
     if (this.damageSurvived >= 1000) {
       this.damageSurvived -= 1000;
