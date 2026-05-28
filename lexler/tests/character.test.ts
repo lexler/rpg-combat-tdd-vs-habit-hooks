@@ -109,4 +109,14 @@ describe('Character', () => {
 
     expect(character.factions).toContain('Knights');
   });
+
+  it('can leave a faction', () => {
+    const character = new Character();
+    character.join('Knights');
+    character.join('Mages');
+
+    character.leave('Knights');
+
+    expect(character.factions).toEqual(['Mages']);
+  });
 });
