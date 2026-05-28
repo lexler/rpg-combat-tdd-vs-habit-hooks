@@ -130,4 +130,16 @@ describe('Character', () => {
 
     expect(ally.health).toBe(1000);
   });
+
+  it('can heal an ally', () => {
+    const healer = new Character();
+    const ally = new Character();
+    healer.join('Knights');
+    ally.join('Knights');
+    new Character().dealDamage(ally, 300);
+
+    healer.heal(ally, 100);
+
+    expect(ally.health).toBe(800);
+  });
 });
