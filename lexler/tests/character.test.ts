@@ -184,6 +184,17 @@ describe('Character', () => {
     expect(character.level).toBe(2);
   });
 
+  it('does not count re-joining a faction toward leveling', () => {
+    const character = new Character();
+
+    character.join('Knights');
+    character.leave('Knights');
+    character.join('Knights');
+    character.join('Mages');
+
+    expect(character.level).toBe(1);
+  });
+
   it('needs an additional 2000 survived damage to go from level 2 to level 3', () => {
     const character = new Character({ level: 2 });
     const attacker = new Character();
