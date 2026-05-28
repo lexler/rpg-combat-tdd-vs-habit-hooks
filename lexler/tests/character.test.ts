@@ -207,6 +207,14 @@ describe('Character', () => {
     expect(character.level).toBe(10);
   });
 
+  it('cannot go beyond level 10 via faction progression', () => {
+    const character = new Character({ level: 10 });
+
+    for (let i = 0; i < 100; i += 1) character.join(`Faction${i}`);
+
+    expect(character.level).toBe(10);
+  });
+
   it('needs an additional 2000 survived damage to go from level 2 to level 3', () => {
     const character = new Character({ level: 2 });
     const attacker = new Character();
