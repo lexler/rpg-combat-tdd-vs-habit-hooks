@@ -18,7 +18,16 @@ describe('Character', () => {
     expect(target.health).toBe(900);
   });
 
-  // [TEST] When damage equals or exceeds current health, health becomes 0 and target dies
+  it('dies and has 0 health when damage exceeds current health', () => {
+    const attacker = new Character();
+    const target = new Character();
+
+    attacker.dealDamage(target, 1500);
+
+    expect(target.health).toBe(0);
+    expect(target.isAlive).toBe(false);
+  });
+
   // [TEST] A Character cannot deal damage to itself
   // [TEST] A Character can heal themselves, increasing their own health
   // [TEST] A dead Character cannot heal
