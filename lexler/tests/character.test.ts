@@ -95,4 +95,10 @@ describe('Character', () => {
 
     expect(character.health).toBe(1500);
   });
+
+  it('belongs to no factions when newly created', () => {
+    const character = new Character();
+
+    expect(character.factions).toEqual([]);
+  });
 });
