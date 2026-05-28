@@ -53,7 +53,18 @@ export class Character {
     return this.level >= 6 ? 1500 : 1000;
   }
 
+  private readonly factionsEverJoined = new Set<string>();
+  private factionsTowardNextLevel = 0;
+
   join(faction: string): void {
+    if (!this.factionsEverJoined.has(faction)) {
+      this.factionsEverJoined.add(faction);
+      this.factionsTowardNextLevel += 1;
+      if (this.factionsTowardNextLevel >= 3) {
+        this.factionsTowardNextLevel -= 3;
+        this.level += 1;
+      }
+    }
     this._factions.add(faction);
   }
 
