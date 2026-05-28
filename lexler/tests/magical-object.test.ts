@@ -33,6 +33,16 @@ describe('HealingObject', () => {
     expect(character.health).toBe(800);
   });
 
+  it('cannot push a character above their max health', () => {
+    const character = new Character();
+    new Character().dealDamage(character, 100);
+    const fountain = new HealingObject({ maxHealth: 500 });
+
+    fountain.heal(character, 500);
+
+    expect(character.health).toBe(1000);
+  });
+
   it('cannot give more health than it has remaining', () => {
     const character = new Character();
     new Character().dealDamage(character, 400);
