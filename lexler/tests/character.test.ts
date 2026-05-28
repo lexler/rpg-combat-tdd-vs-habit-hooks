@@ -174,6 +174,16 @@ describe('Character', () => {
     expect(character.level).toBe(2);
   });
 
+  it('gains a level after joining 3 distinct factions', () => {
+    const character = new Character();
+
+    character.join('Knights');
+    character.join('Mages');
+    character.join('Rangers');
+
+    expect(character.level).toBe(2);
+  });
+
   it('needs an additional 2000 survived damage to go from level 2 to level 3', () => {
     const character = new Character({ level: 2 });
     const attacker = new Character();
