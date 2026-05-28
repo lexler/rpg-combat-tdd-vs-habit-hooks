@@ -1,3 +1,5 @@
+import type { MagicalWeapon } from './magical-object.js';
+
 export class Character {
   health = 1000;
   isAlive = true;
@@ -12,7 +14,7 @@ export class Character {
     this.level = options.level ?? 1;
   }
 
-  attackWith(weapon: import('./magical-object.js').MagicalWeapon, target: Character): void {
+  attackWith(weapon: MagicalWeapon, target: Character): void {
     this.dealDamage(target, weapon.damage);
   }
 
