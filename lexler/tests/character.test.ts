@@ -119,4 +119,15 @@ describe('Character', () => {
 
     expect(character.factions).toEqual(['Mages']);
   });
+
+  it('cannot deal damage to allies', () => {
+    const attacker = new Character();
+    const ally = new Character();
+    attacker.join('Knights');
+    ally.join('Knights');
+
+    attacker.dealDamage(ally, 100);
+
+    expect(ally.health).toBe(1000);
+  });
 });
