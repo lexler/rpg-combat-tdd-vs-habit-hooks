@@ -142,4 +142,14 @@ describe('Character', () => {
 
     expect(ally.health).toBe(800);
   });
+
+  it('cannot heal a non-ally', () => {
+    const healer = new Character();
+    const other = new Character();
+    new Character().dealDamage(other, 300);
+
+    healer.heal(other, 100);
+
+    expect(other.health).toBe(700);
+  });
 });
