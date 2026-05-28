@@ -101,4 +101,12 @@ describe('Character', () => {
 
     expect(character.factions).toEqual([]);
   });
+
+  it('can join a faction', () => {
+    const character = new Character();
+
+    character.join('Knights');
+
+    expect(character.factions).toContain('Knights');
+  });
 });
