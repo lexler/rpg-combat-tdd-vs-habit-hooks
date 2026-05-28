@@ -33,6 +33,11 @@ export class Character {
     this.factions.push(faction);
   }
 
+  leave(faction: string): void {
+    const index = this.factions.indexOf(faction);
+    if (index !== -1) this.factions.splice(index, 1);
+  }
+
   private receiveDamage(amount: number): void {
     this.health -= amount;
     if (this.health <= 0) {
