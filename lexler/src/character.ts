@@ -21,7 +21,8 @@ export class Character {
 
   heal(amount: number): void {
     if (!this.isAlive) return;
-    this.health = Math.min(this.health + amount, 1000);
+    const cap = this.level >= 6 ? 1500 : 1000;
+    this.health = Math.min(this.health + amount, cap);
   }
 
   private receiveDamage(amount: number): void {
