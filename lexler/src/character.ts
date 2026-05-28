@@ -16,7 +16,7 @@ export class Character {
 
   attackWith(weapon: MagicalWeapon, target: Character): void {
     this.dealDamage(target, weapon.damage);
-    weapon.health -= 1;
+    weapon.wearFromUse();
   }
 
   dealDamage(target: Character, amount: number): void {

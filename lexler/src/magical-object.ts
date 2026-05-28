@@ -17,6 +17,10 @@ export class MagicalWeapon extends MagicalObject {
     super({ maxHealth: options.maxHealth });
     this.damage = options.damage;
   }
+
+  wearFromUse(): void {
+    this.health -= 1;
+  }
 }
 
 export class HealingObject extends MagicalObject {
