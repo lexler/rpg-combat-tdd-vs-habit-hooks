@@ -70,6 +70,15 @@ describe('Character', () => {
     expect(target.health).toBe(950);
   });
 
+  it('deals normal damage when the level gap is less than 5', () => {
+    const attacker = new Character();
+    const target = new Character({ level: 5 });
+
+    attacker.dealDamage(target, 100);
+
+    expect(target.health).toBe(900);
+  });
+
   it('deals 50% more damage when target is 5+ levels below attacker', () => {
     const attacker = new Character({ level: 6 });
     const target = new Character();
