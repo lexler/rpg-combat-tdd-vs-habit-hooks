@@ -8,6 +8,7 @@ export class Character {
   }
 
   heal(amount: number): void {
+    if (!this.isAlive) return;
     this.health += amount;
   }
 
