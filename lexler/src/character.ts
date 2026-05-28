@@ -4,5 +4,9 @@ export class Character {
 
   dealDamage(target: Character, amount: number): void {
     target.health -= amount;
+    if (target.health <= 0) {
+      target.health = 0;
+      target.isAlive = false;
+    }
   }
 }
