@@ -50,7 +50,7 @@ describe('max health by level', () => {
     const subject = new Character(level);
     const bob = new Character();
     if (preDamage > 0) bob.attack(subject, preDamage);
-    if (heal > 0) subject.heal(heal);
+    if (heal > 0) subject.heal(subject, heal);
     expect(subject.health).toBe(expectedHealth);
   });
 });

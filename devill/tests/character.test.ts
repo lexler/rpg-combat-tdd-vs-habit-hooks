@@ -23,7 +23,7 @@ describe('Character', () => {
     const alice = new Character();
     const bob = new Character();
     if (preDamage > 0) bob.attack(alice, preDamage);
-    if (heal > 0) alice.heal(heal);
+    if (heal > 0) alice.heal(alice, heal);
     expect(alice.health).toBe(expected.health);
     expect(alice.alive).toBe(expected.alive);
   });
