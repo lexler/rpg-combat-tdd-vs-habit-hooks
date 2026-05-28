@@ -3,6 +3,7 @@ export class Character {
   isAlive = true;
 
   dealDamage(target: Character, amount: number): void {
+    if (target === this) return;
     target.receiveDamage(amount);
   }
 
