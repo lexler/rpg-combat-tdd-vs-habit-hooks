@@ -57,15 +57,18 @@ export class Character {
   private factionsTowardNextLevel = 0;
 
   join(faction: string): void {
-    if (!this.factionsEverJoined.has(faction)) {
-      this.factionsEverJoined.add(faction);
-      this.factionsTowardNextLevel += 1;
-      if (this.factionsTowardNextLevel >= 3) {
-        this.factionsTowardNextLevel -= 3;
-        this.level += 1;
-      }
-    }
+    const isNewToCharacter = !this.factionsEverJoined.has(faction);
     this._factions.add(faction);
+    this.factionsEverJoined.add(faction);
+    if (isNewToCharacter) this.progressLevelFromFactions();
+  }
+
+  private progressLevelFromFactions(): void {
+    this.factionsTowardNextLevel += 1;
+    if (this.factionsTowardNextLevel >= 3) {
+      this.factionsTowardNextLevel -= 3;
+      this.level += 1;
+    }
   }
 
   leave(faction: string): void {
