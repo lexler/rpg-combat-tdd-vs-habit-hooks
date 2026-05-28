@@ -9,6 +9,17 @@ describe('MagicalObject', () => {
     expect(object.health).toBe(500);
     expect(object.maxHealth).toBe(500);
   });
+
+  it('is destroyed once health reaches 0', () => {
+    const attacker = new Character();
+    const target = new Character();
+    const sword = new MagicalWeapon({ maxHealth: 1, damage: 50 });
+
+    attacker.attackWith(sword, target);
+
+    expect(sword.health).toBe(0);
+    expect(sword.isDestroyed).toBe(true);
+  });
 });
 
 describe('HealingObject', () => {

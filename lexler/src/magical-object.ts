@@ -8,6 +8,10 @@ export class MagicalObject {
     this.maxHealth = options.maxHealth;
     this.health = options.maxHealth;
   }
+
+  get isDestroyed(): boolean {
+    return this.health <= 0;
+  }
 }
 
 export class MagicalWeapon extends MagicalObject {
