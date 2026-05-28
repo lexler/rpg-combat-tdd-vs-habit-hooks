@@ -6,6 +6,7 @@ export class Character implements Damageable {
   health: number;
   alive = true;
   factions = new Set<string>();
+  damageTaken = 0;
 
   constructor(level = 1) {
     this.level = level;
@@ -18,6 +19,7 @@ export class Character implements Damageable {
 
   join(faction: string): void {
     this.factions.add(faction);
+    this.recomputeLevel();
   }
 
   attack(target: Damageable, amount: number): void {
@@ -54,8 +56,29 @@ export class Character implements Damageable {
   }
 
   private applyDamage(target: Damageable, amount: number): void {
-    target.health = Math.max(0, target.health - amount);
+    const before = target.health;
+    target.health = Math.max(0, before - amount);
     if (target.health === 0) target.alive = false;
+    if (target instanceof Character) {
+      target.damageTaken += before - target.health;
+      target.recomputeLevel();
+    }
+  }
+
+  private recomputeLevel(): void {
+    if (!this.alive) return;
+    const next = Math.min(10, Math.max(this.damageLevel(), this.factionLevel()));
+    if (next > this.level) this.level = next;
+  }
+
+  private damageLevel(): number {
+    let n = 1;
+    while (n < 10 && this.damageTaken >= n * (n + 1) / 2 * 1000) n++;
+    return n;
+  }
+
+  private factionLevel(): number {
+    return Math.floor(this.factions.size / 3) + 1;
   }
 
   private consumeWeapon(weapon: MagicalWeapon): void {
