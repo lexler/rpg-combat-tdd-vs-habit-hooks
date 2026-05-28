@@ -64,6 +64,7 @@ export class Character {
   }
 
   private progressLevelFromFactions(): void {
+    if (this.level >= 10) return;
     this.factionsTowardNextLevel += 1;
     if (this.factionsTowardNextLevel >= 3) {
       this.factionsTowardNextLevel -= 3;
