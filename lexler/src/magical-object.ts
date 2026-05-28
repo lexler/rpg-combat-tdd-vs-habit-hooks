@@ -11,5 +11,7 @@ export class MagicalObject {
 }
 
 export class HealingObject extends MagicalObject {
-  heal(_target: Character, _amount: number): void {}
+  heal(target: Character, amount: number): void {
+    target.gainHealth(amount);
+  }
 }

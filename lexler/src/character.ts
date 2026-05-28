@@ -34,8 +34,12 @@ export class Character {
 
   heal(target: Character, amount: number): void {
     if (target !== this && !this.isAllyOf(target)) return;
-    if (!target.isAlive) return;
-    target.health = Math.min(target.health + amount, target.maxHealth);
+    target.gainHealth(amount);
+  }
+
+  gainHealth(amount: number): void {
+    if (!this.isAlive) return;
+    this.health = Math.min(this.health + amount, this.maxHealth);
   }
 
   get maxHealth(): number {
