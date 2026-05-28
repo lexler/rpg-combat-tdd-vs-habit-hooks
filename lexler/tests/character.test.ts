@@ -45,5 +45,14 @@ describe('Character', () => {
     expect(character.health).toBe(800);
   });
 
-  // [TEST] A dead Character cannot heal
+  it('cannot heal once dead', () => {
+    const character = new Character();
+    new Character().dealDamage(character, 1500);
+
+    character.heal(100);
+
+    expect(character.health).toBe(0);
+    expect(character.isAlive).toBe(false);
+  });
+
 });
