@@ -7,7 +7,9 @@ export class Character {
     target.receiveDamage(amount);
   }
 
-  heal(_amount: number): void {}
+  heal(amount: number): void {
+    this.health += amount;
+  }
 
   receiveDamage(amount: number): void {
     this.health -= amount;
