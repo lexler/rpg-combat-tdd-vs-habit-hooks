@@ -2,7 +2,11 @@ export class Character {
   health = 1000;
   isAlive = true;
   level: number;
-  readonly factions: string[] = [];
+  private readonly _factions = new Set<string>();
+
+  get factions(): string[] {
+    return [...this._factions];
+  }
 
   constructor(options: { level?: number } = {}) {
     this.level = options.level ?? 1;
@@ -30,12 +34,11 @@ export class Character {
   }
 
   join(faction: string): void {
-    this.factions.push(faction);
+    this._factions.add(faction);
   }
 
   leave(faction: string): void {
-    const index = this.factions.indexOf(faction);
-    if (index !== -1) this.factions.splice(index, 1);
+    this._factions.delete(faction);
   }
 
   private receiveDamage(amount: number): void {
