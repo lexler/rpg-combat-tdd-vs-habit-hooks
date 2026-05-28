@@ -9,7 +9,8 @@ export class Character {
 
   dealDamage(target: Character, amount: number): void {
     if (target === this) return;
-    target.receiveDamage(amount);
+    const adjusted = target.level - this.level >= 5 ? amount / 2 : amount;
+    target.receiveDamage(adjusted);
   }
 
   heal(amount: number): void {
