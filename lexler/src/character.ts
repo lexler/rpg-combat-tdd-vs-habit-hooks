@@ -14,7 +14,15 @@ export class Character {
 
   dealDamage(target: Character, amount: number): void {
     if (target === this) return;
+    if (this.isAllyOf(target)) return;
     target.receiveDamage(this.adjustDamageForLevel(target, amount));
+  }
+
+  private isAllyOf(other: Character): boolean {
+    for (const faction of this._factions) {
+      if (other._factions.has(faction)) return true;
+    }
+    return false;
   }
 
   private adjustDamageForLevel(target: Character, amount: number): number {
