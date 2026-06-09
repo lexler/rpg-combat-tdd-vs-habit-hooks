@@ -1,0 +1,6 @@
+{
+  "threshold": 0,
+  "minTokens": 50,
+  "minLines": 5,
+  "ignore": ["**/node_modules/**", "**/dist/**", "**/*.test.ts", "**/*.spec.ts"]
+}
