@@ -11,6 +11,11 @@ devill/   Ivett (devill) — BDD + habit hooks enforcing code quality
 
 Each folder keeps its own full commit history — the history is the point. Browse the commits to see how each approach unfolds.
 
+## View in your browser
+
+- [Commit viewer](https://lexler.github.io/rpg-combat-tdd-vs-habit-hooks/) — step through both histories commit by commit, diffs included (built by David Vydra)
+- [TDD session transcript](https://lexler.github.io/rpg-combat-tdd-vs-habit-hooks/lexler/docs/tdd-session-transcript.html) — the full human–AI conversation behind the lexler solution
+
 ## Branches
 
 - `lexler-solution` — Lada's solution and its history
